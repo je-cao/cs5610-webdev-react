@@ -21,11 +21,13 @@ export class CourseManagerComponent extends React.Component{
                         <Link to="profile">Profile</Link> |
                         <Link to="courses">Courses</Link> |
                         <Link to="card">Card</Link> |
-                        <Link to="edit">Editor</Link>
+                        <Link to="editor">Editor</Link>
                         <Route path="/login" exact component={Login}/>
                         <Route path="/register" exact component={Register}/>
                         <Route path="/profile" exact component={Profile}/>
                         <Route path="/card" exact component={CourseGridComponent}/>
+                        <Route path="/editor" exact component={CourseEditorComponent}/>
+
                         <Route path="/courses" exact>
                             <CourseListComponent courses={this.state.courses} instructor="Jose"/></Route>
 
