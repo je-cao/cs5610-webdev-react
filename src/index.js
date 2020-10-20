@@ -1,20 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import './index.css';
+// import './index.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import App from './App';
 import CourseListComponent from "./Components/CourseListComponent";
 import * as serviceWorker from './serviceWorker';
-import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Profile from "./Components/Profile";
-import {BrowserRouter, Link, Route} from "react-router-dom";
-import CourseEditorComponent from "./Components/CourseEditorComponent";
-import {CourseManagerComponent} from "./Components/CourseManagerComponent";
-import CourseGridComponent from "./Components/CourseGridComponent";
+import CourseEditorComponent from "./containers/CourseEditorContainer";
+import{CourseManagerComponent} from "./Components/CourseManagerComponent";
+import {combineReducers, createStore} from "redux";
+import {Provider} from "react-redux";
+import Counter from "./Components/Counter";
+import CounterContainer from "./containers/CounterContainer";
+import fsm from "./reducers/fsm"
+import widgetsReducer from "./reducers/widgetsReducers";
+import moduleReducer from "./reducers/moduleReducer";
+import courseReducer from "./reducers/courseReducer";
+import {lessonReducer} from "./reducers/lessonReducer";
+import "font-awesome/css/font-awesome.min.css"
+import Login from "./Components/Login";
+
+const reducers = combineReducers({
+    fsm, widgetsReducer, moduleReducer, courseReducer, lessonReducer
+})
+const store = createStore(reducers)
 
 ReactDOM.render(
-    <CourseManagerComponent/>,
+    <Provider store={store}>
+        <CourseManagerComponent/>
+    </Provider>,
     document.getElementById('root')
 );
 
@@ -22,3 +37,4 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+

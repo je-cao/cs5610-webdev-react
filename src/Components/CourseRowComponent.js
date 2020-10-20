@@ -5,12 +5,12 @@ import {updateCourse} from "../Services/CourseService";
 const courseBeingEdited = false
 const editCourse = () => {}
 
-export default class CourseRowComponent extends React.Component{
+export default class CourseRowComponent extends React.Component {
     state = {
         editing: false,
         course: this.props.course
     }
-    render(){
+    render() {
         return(
             <tr>
                 <td>
@@ -18,17 +18,17 @@ export default class CourseRowComponent extends React.Component{
                         this.state.editing &&
                         <input
                             className="form-control"
-                            onChange={(event) =>{
+                            onChange={(event) => {
                                 const newTitle = event.target.value
                                 this.setState(prevState => ({
-                                    course:{...prevState.course, title:newTitle}
+                                    course: {...prevState.course, title: newTitle}
                                 }))}
                             }
                             value={this.state.course.title}/>
-                            }
+                    }
                     {
                         !this.state.editing &&
-                        <Link to={`/edit/ ${this.props.course._id}`}>{this.props.course.title} {this.props.course._id}</Link>
+                        <Link to={`/edit/${this.props.course._id}`}>{this.props.course.title} {this.props.course._id}</Link>
                     }
                 </td>
                 <td>{this.props.course.owner}</td>
@@ -43,8 +43,7 @@ export default class CourseRowComponent extends React.Component{
                         !this.state.editing &&
                         <button
                             onClick={() => this.setState({editing: true})}
-                            className="btn btn-primary">Edit
-                        </button>
+                            className="btn btn-primary">Edit</button>
                     }
                     {
                         this.state.editing &&
@@ -53,8 +52,7 @@ export default class CourseRowComponent extends React.Component{
                                 updateCourse(this.state.course._id, this.state.course)
                                     .then(status => this.setState({editing: false}))
                             }}
-                            className="btn btn-primary">Ok
-                        </button>
+                            className="btn btn-primary">OK</button>
                     }
                 </td>
             </tr>
