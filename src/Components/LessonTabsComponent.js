@@ -6,6 +6,7 @@ import LessonService from "../Services/LessonService";
 
 const LessonTabs = (
     {
+        course,
         moduleId,
         lessons=[],
         createLessonForModule,
@@ -18,7 +19,7 @@ const LessonTabs = (
             {
                 lessons.map(lesson =>
                         <li key={lesson._id} className="nav-item">
-                            <a class="nav-link">
+                            <Link to = {`/edit/${course._id}/modules${module._id}/lessons/$lesson._id`} className="nav-link">
                                 <button onClick={() => deleteLesson(lesson._id)}>
                                     <i className="fa fa-times"></i>
                                 </button>
@@ -55,6 +56,7 @@ const LessonTabs = (
     </div>
 
 const stateToPropertyMapper = (state) => ({
+    course:state.courseReducer.course,
     lessons: state.lessonReducer.lessons,
     moduleId: state.lessonReducer.moduleId
 })
